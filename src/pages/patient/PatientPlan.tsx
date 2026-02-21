@@ -27,7 +27,7 @@ const planItems = [
 const statusIcon = {
   completed: <CheckCircle className="h-5 w-5 text-success" />,
   "in-progress": <Clock className="h-5 w-5 text-warning" />,
-  pending: <Circle className="h-5 w-5 text-muted-foreground" />,
+  pending: <Circle className="h-5 w-5 text-muted-foreground/40" />,
 };
 
 export default function PatientPlan() {
@@ -43,7 +43,7 @@ export default function PatientPlan() {
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-8 rounded-xl bg-card p-6 shadow-card">
+      <div className="mb-8 rounded-2xl bg-card p-6 shadow-card">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-foreground">Overall Progress</h3>
@@ -51,9 +51,9 @@ export default function PatientPlan() {
           </div>
           <span className="text-[28px] font-bold text-primary">{progress}%</span>
         </div>
-        <div className="mt-4 h-3 w-full overflow-hidden rounded-full bg-muted">
+        <div className="mt-4 h-3 w-full overflow-hidden rounded-full bg-primary/10">
           <div
-            className="h-full rounded-full bg-primary transition-all duration-500"
+            className="h-full rounded-full bg-primary transition-all duration-700 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -62,11 +62,11 @@ export default function PatientPlan() {
       {/* Plan Categories */}
       <div className="grid gap-6 md:grid-cols-2">
         {planItems.map((category) => (
-          <div key={category.category} className="rounded-xl bg-card p-6 shadow-card">
+          <div key={category.category} className="rounded-2xl bg-card p-6 shadow-card">
             <h3 className="text-foreground">{category.category}</h3>
             <div className="mt-4 space-y-3">
               {category.tasks.map((task, i) => (
-                <div key={i} className="flex items-center gap-3 rounded-lg border border-border p-3">
+                <div key={i} className="flex items-center gap-3 rounded-xl border border-border/60 p-3 transition-all duration-200 hover:bg-muted/30 hover:shadow-soft">
                   {statusIcon[task.status as keyof typeof statusIcon]}
                   <span className={`text-body ${task.status === "completed" ? "text-muted-foreground line-through" : "text-foreground"}`}>
                     {task.title}

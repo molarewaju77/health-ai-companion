@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Bot, User, Star, Clock, CheckCircle, XCircle } from "lucide-react";
+import { Send, Bot, User, Star, Clock, CheckCircle } from "lucide-react";
 
 interface Message {
   role: "ai" | "user";
@@ -89,7 +89,6 @@ export default function PatientCheckin() {
     ]);
     setPhase("under-review");
 
-    // Simulate professional response (approve or reject randomly for demo)
     setTimeout(() => {
       const shouldReject = Math.random() > 0.6;
       if (shouldReject) {
@@ -120,23 +119,23 @@ export default function PatientCheckin() {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-auto rounded-xl bg-card p-6 shadow-card">
+      <div className="flex-1 overflow-auto rounded-2xl bg-card p-6 shadow-card">
         <div className="space-y-4">
           {messages.map((msg, i) => (
             <div key={i} className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
-                msg.role === "ai" ? "bg-secondary" : "bg-primary"
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${
+                msg.role === "ai" ? "bg-secondary/15" : "bg-primary/15"
               }`}>
                 {msg.role === "ai" ? (
-                  <Bot className="h-4 w-4 text-secondary-foreground" />
+                  <Bot className="h-4 w-4 text-secondary" />
                 ) : (
-                  <User className="h-4 w-4 text-primary-foreground" />
+                  <User className="h-4 w-4 text-primary" />
                 )}
               </div>
-              <div className={`max-w-[70%] rounded-2xl px-4 py-3 text-body ${
+              <div className={`max-w-[70%] rounded-2xl px-4 py-3 text-body transition-all duration-200 ${
                 msg.role === "ai"
-                  ? "bg-muted text-foreground"
-                  : "bg-primary text-primary-foreground"
+                  ? "bg-muted/60 text-foreground"
+                  : "bg-primary text-primary-foreground shadow-soft"
               }`}>
                 {msg.content}
               </div>
@@ -145,14 +144,14 @@ export default function PatientCheckin() {
 
           {isTyping && (
             <div className="flex gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary">
-                <Bot className="h-4 w-4 text-secondary-foreground" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-secondary/15">
+                <Bot className="h-4 w-4 text-secondary" />
               </div>
-              <div className="rounded-2xl bg-muted px-4 py-3">
-                <div className="flex gap-1">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-muted-foreground" />
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-muted-foreground" style={{ animationDelay: "0.2s" }} />
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-muted-foreground" style={{ animationDelay: "0.4s" }} />
+              <div className="rounded-2xl bg-muted/60 px-4 py-3">
+                <div className="flex gap-1.5">
+                  <span className="h-2 w-2 animate-pulse-soft rounded-full bg-muted-foreground/50" />
+                  <span className="h-2 w-2 animate-pulse-soft rounded-full bg-muted-foreground/50" style={{ animationDelay: "0.2s" }} />
+                  <span className="h-2 w-2 animate-pulse-soft rounded-full bg-muted-foreground/50" style={{ animationDelay: "0.4s" }} />
                 </div>
               </div>
             </div>
@@ -160,8 +159,8 @@ export default function PatientCheckin() {
 
           {/* Under Review Status */}
           {phase === "under-review" && selectedProfessional && (
-            <div className="mx-auto mt-4 flex max-w-md items-center gap-3 rounded-xl border border-warning/30 bg-warning/5 p-4">
-              <Clock className="h-5 w-5 shrink-0 text-warning" />
+            <div className="mx-auto mt-4 flex max-w-md items-center gap-3 rounded-2xl border border-warning/20 bg-warning/5 p-4">
+              <Clock className="h-5 w-5 shrink-0 text-warning animate-pulse-soft" />
               <p className="text-body font-medium text-foreground">
                 Your report is under review by {selectedProfessional.name}. Please wait shortly...
               </p>
@@ -177,9 +176,9 @@ export default function PatientCheckin() {
                   <button
                     key={prof.id}
                     onClick={() => selectProfessional(prof)}
-                    className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-left shadow-sm transition-all hover:border-primary hover:shadow-md"
+                    className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 text-left shadow-soft transition-all duration-300 hover:border-primary/30 hover:shadow-card hover:-translate-y-0.5"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-sm font-bold text-primary">
                       {prof.avatar}
                     </div>
                     <div className="min-w-0">
@@ -201,7 +200,7 @@ export default function PatientCheckin() {
 
           {/* Approved Status */}
           {phase === "approved" && selectedProfessional && (
-            <div className="mx-auto mt-4 flex max-w-md items-center gap-3 rounded-xl border border-success/30 bg-success/5 p-4">
+            <div className="mx-auto mt-4 flex max-w-md items-center gap-3 rounded-2xl border border-success/20 bg-success/5 p-4">
               <CheckCircle className="h-5 w-5 shrink-0 text-success" />
               <p className="text-body font-medium text-foreground">
                 {selectedProfessional.name} is now in the conversation.
@@ -211,14 +210,14 @@ export default function PatientCheckin() {
         </div>
       </div>
 
-      {/* Quick Replies - only in chat phase */}
+      {/* Quick Replies */}
       {phase === "chat" && (
         <div className="mt-4 flex flex-wrap gap-2">
           {quickReplies.map((reply) => (
             <button
               key={reply}
               onClick={() => sendMessage(reply)}
-              className="rounded-full border border-primary bg-transparent px-4 py-2 text-small font-medium text-primary transition-colors hover:bg-primary/5"
+              className="rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-small font-medium text-primary transition-all duration-200 hover:bg-primary/10 hover:border-primary/30"
             >
               {reply}
             </button>
@@ -226,7 +225,7 @@ export default function PatientCheckin() {
         </div>
       )}
 
-      {/* Input - only in chat or approved phase */}
+      {/* Input */}
       {(phase === "chat" || phase === "approved") && (
         <div className="mt-3 flex gap-3">
           <input
@@ -235,11 +234,11 @@ export default function PatientCheckin() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
             placeholder="Type your message..."
-            className="flex-1 rounded-xl border border-input bg-card px-4 py-3 text-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="flex-1 rounded-2xl border border-input bg-card px-5 py-3 text-body text-foreground shadow-soft placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-shadow duration-200"
           />
           <button
             onClick={() => sendMessage(input)}
-            className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-colors hover:bg-primary/90"
+            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-soft transition-all duration-200 hover:shadow-glow hover:-translate-y-0.5"
           >
             <Send className="h-5 w-5" />
           </button>

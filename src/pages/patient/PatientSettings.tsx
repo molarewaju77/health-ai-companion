@@ -38,22 +38,22 @@ export default function PatientSettings() {
 
       <div className="space-y-6">
         {settingSections.map((section, i) => (
-          <div key={i} className="rounded-xl bg-card p-6 shadow-card">
+          <div key={i} className="rounded-2xl bg-card p-6 shadow-card">
             <div className="flex items-center gap-2">
               <section.icon className="h-5 w-5 text-primary" />
               <h3 className="text-foreground">{section.title}</h3>
             </div>
-            <div className="mt-4 divide-y divide-border">
+            <div className="mt-4 divide-y divide-border/60">
               {section.settings.map((setting, j) => (
                 <div key={j} className="flex items-center justify-between py-4 first:pt-0 last:pb-0">
                   <p className="text-body text-foreground">{setting.label}</p>
                   <button
-                    className={`relative h-6 w-11 rounded-full transition-colors ${
+                    className={`relative h-6 w-11 rounded-full transition-all duration-300 ${
                       setting.enabled ? "bg-primary" : "bg-muted"
                     }`}
                   >
                     <span
-                      className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${
+                      className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-soft transition-transform duration-300 ${
                         setting.enabled ? "translate-x-5" : ""
                       }`}
                     />
