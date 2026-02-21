@@ -1,4 +1,4 @@
-import { Home, ClipboardList, FileText, User, Settings, LogOut } from "lucide-react";
+import { Home, ClipboardList, FileText, User, Settings, LogOut, Heart } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -15,10 +15,10 @@ const bottomLinks = [
 
 export function PatientSidebar() {
   return (
-    <aside className="flex h-screen w-64 flex-col border-r border-border bg-sidebar">
-      <div className="flex items-center gap-2 px-6 py-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-          <span className="text-sm font-bold text-primary-foreground">W</span>
+    <aside className="flex h-screen w-64 flex-col border-r border-border/60 bg-card/80 backdrop-blur-sm">
+      <div className="flex items-center gap-2.5 px-6 py-5">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
+          <Heart className="h-4.5 w-4.5 text-primary" />
         </div>
         <span className="text-lg font-bold text-foreground">WellSync</span>
       </div>
@@ -32,10 +32,10 @@ export function PatientSidebar() {
               end={link.to === "/patient"}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium transition-all duration-200",
                   isActive
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-primary/10 text-primary shadow-soft"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 )
               }
             >
@@ -45,17 +45,17 @@ export function PatientSidebar() {
           ))}
         </div>
 
-        <div className="mb-4 space-y-1 border-t border-border pt-4">
+        <div className="mb-4 space-y-1 border-t border-border/60 pt-4">
           {bottomLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium transition-all duration-200",
                   isActive
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-primary/10 text-primary shadow-soft"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 )
               }
             >
@@ -63,7 +63,7 @@ export function PatientSidebar() {
               {link.label}
             </NavLink>
           ))}
-          <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium text-muted-foreground transition-all duration-200 hover:bg-destructive/5 hover:text-destructive">
             <LogOut className="h-5 w-5" />
             Logout
           </button>

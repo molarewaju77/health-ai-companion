@@ -59,9 +59,9 @@ export default function ProfessionalChat() {
 
   const renderAvatar = (role: Message["role"]) => {
     const styles = {
-      ai: "bg-secondary text-secondary-foreground",
-      patient: "bg-primary text-primary-foreground",
-      doctor: "bg-accent text-accent-foreground",
+      ai: "bg-secondary/15 text-secondary",
+      patient: "bg-primary/15 text-primary",
+      doctor: "bg-accent/15 text-accent",
     };
     const icons = {
       ai: <Bot className="h-4 w-4" />,
@@ -69,16 +69,16 @@ export default function ProfessionalChat() {
       doctor: <Stethoscope className="h-4 w-4" />,
     };
     return (
-      <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${styles[role]}`}>
+      <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${styles[role]}`}>
         {icons[role]}
       </div>
     );
   };
 
   const getBubbleStyle = (role: Message["role"]) => {
-    if (role === "doctor") return "bg-accent/10 border border-accent/20 text-foreground";
-    if (role === "patient") return "bg-primary text-primary-foreground";
-    return "bg-muted text-foreground";
+    if (role === "doctor") return "bg-accent/8 border border-accent/15 text-foreground";
+    if (role === "patient") return "bg-primary text-primary-foreground shadow-soft";
+    return "bg-muted/60 text-foreground";
   };
 
   const getRoleLabel = (role: Message["role"]) => {
@@ -92,7 +92,7 @@ export default function ProfessionalChat() {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate("/professional/patients")} className="rounded-lg p-2 text-muted-foreground hover:bg-muted">
+          <button onClick={() => navigate("/professional/patients")} className="rounded-xl p-2 text-muted-foreground transition-all duration-200 hover:bg-muted/60 hover:text-foreground">
             <ArrowLeft className="h-5 w-5" />
           </button>
           <div>
@@ -103,14 +103,14 @@ export default function ProfessionalChat() {
         {!sessionEnded && (
           <button
             onClick={endSession}
-            className="flex items-center gap-2 rounded-lg bg-success px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-success/90"
+            className="flex items-center gap-2 rounded-xl bg-success px-4 py-2 text-sm font-medium text-white shadow-soft transition-all duration-200 hover:shadow-card"
           >
             <CheckCircle className="h-4 w-4" />
             End Session & Generate Plan
           </button>
         )}
         {planGenerated && (
-          <div className="flex items-center gap-2 rounded-lg border border-success/30 bg-success/5 px-4 py-2 text-sm font-medium text-success">
+          <div className="flex items-center gap-2 rounded-xl border border-success/20 bg-success/5 px-4 py-2 text-sm font-medium text-success">
             <FileText className="h-4 w-4" />
             Plan sent to patient
           </div>
@@ -120,8 +120,8 @@ export default function ProfessionalChat() {
       {/* Chat - split panel */}
       <div className="grid flex-1 gap-4 overflow-hidden lg:grid-cols-[1fr_340px]">
         {/* Main conversation */}
-        <div className="flex flex-col overflow-hidden rounded-xl bg-card shadow-card">
-          <div className="border-b border-border px-6 py-3">
+        <div className="flex flex-col overflow-hidden rounded-2xl bg-card shadow-card">
+          <div className="border-b border-border/60 px-6 py-3">
             <p className="text-small font-medium text-muted-foreground">Patient–AI Conversation & Doctor Replies</p>
           </div>
           <div className="flex-1 space-y-4 overflow-auto p-6">
@@ -142,7 +142,7 @@ export default function ProfessionalChat() {
 
           {/* Doctor input */}
           {!sessionEnded && (
-            <div className="border-t border-border p-4">
+            <div className="border-t border-border/60 p-4">
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -150,11 +150,11 @@ export default function ProfessionalChat() {
                   onChange={(e) => setDoctorInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendDoctorMessage(doctorInput)}
                   placeholder="Type your message to the patient..."
-                  className="flex-1 rounded-xl border border-input bg-background px-4 py-3 text-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="flex-1 rounded-2xl border border-input bg-background px-5 py-3 text-body text-foreground shadow-soft placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-shadow duration-200"
                 />
                 <button
                   onClick={() => sendDoctorMessage(doctorInput)}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-accent-foreground transition-colors hover:bg-accent/90"
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-soft transition-all duration-200 hover:shadow-glow hover:-translate-y-0.5"
                 >
                   <Send className="h-5 w-5" />
                 </button>
@@ -165,23 +165,23 @@ export default function ProfessionalChat() {
 
         {/* AI Report sidebar */}
         <div className="hidden flex-col gap-4 lg:flex">
-          <div className="rounded-xl bg-card p-5 shadow-card">
+          <div className="rounded-2xl bg-card p-5 shadow-card">
             <h3 className="mb-3 text-sm font-semibold text-foreground">AI Assessment</h3>
             <div className="space-y-3 text-small text-muted-foreground">
               <div className="flex justify-between">
                 <span>Risk Level</span>
-                <span className={`font-medium capitalize ${patient.risk === "high" ? "text-error" : patient.risk === "moderate" ? "text-warning" : "text-success"}`}>{patient.risk}</span>
+                <span className={`font-medium capitalize ${patient.risk === "high" ? "text-destructive" : patient.risk === "moderate" ? "text-warning" : "text-success"}`}>{patient.risk}</span>
               </div>
               <div className="flex justify-between"><span>Symptoms</span><span className="font-medium text-foreground">Headache, Fatigue</span></div>
               <div className="flex justify-between"><span>Likely Cause</span><span className="font-medium text-foreground">Dehydration, Stress</span></div>
               <div className="flex justify-between"><span>Sleep</span><span className="font-medium text-foreground">5-6 hrs (below rec.)</span></div>
             </div>
           </div>
-          <div className="rounded-xl bg-card p-5 shadow-card">
+          <div className="rounded-2xl bg-card p-5 shadow-card">
             <h3 className="mb-3 text-sm font-semibold text-foreground">Quick Actions</h3>
             <div className="space-y-2">
               {["Request blood work", "Recommend sleep study", "Prescribe hydration plan", "Schedule follow-up"].map((action) => (
-                <button key={action} className="w-full rounded-lg border border-border px-3 py-2 text-left text-small text-foreground transition-colors hover:bg-muted">
+                <button key={action} className="w-full rounded-xl border border-border/60 px-3 py-2 text-left text-small text-foreground transition-all duration-200 hover:bg-muted/40 hover:shadow-soft">
                   {action}
                 </button>
               ))}

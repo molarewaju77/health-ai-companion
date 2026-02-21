@@ -36,13 +36,13 @@ export default function ProfessionalReports() {
       <div className="animate-fade-in">
         <button
           onClick={() => setSelectedReport(null)}
-          className="mb-6 flex items-center gap-2 text-body font-medium text-muted-foreground hover:text-foreground"
+          className="mb-6 flex items-center gap-2 text-body font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Reports
         </button>
 
-        <div className="rounded-xl bg-card p-8 shadow-card">
+        <div className="rounded-2xl bg-card p-8 shadow-card">
           <div className="flex items-start justify-between">
             <div>
               <h1 className="text-foreground">{selectedReport.patient}</h1>
@@ -53,10 +53,10 @@ export default function ProfessionalReports() {
 
           <div className="mt-8">
             <h3 className="text-foreground">AI-Generated Report</h3>
-            <div className="mt-4 rounded-lg border border-border bg-muted/50 p-6">
+            <div className="mt-4 rounded-2xl border border-border/60 bg-muted/30 p-6">
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary">
-                  <Bot className="h-4 w-4 text-secondary-foreground" />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-secondary/15">
+                  <Bot className="h-4 w-4 text-secondary" />
                 </div>
                 <div>
                   <p className="text-body font-semibold text-foreground">AI Health Assessment</p>
@@ -72,13 +72,13 @@ export default function ProfessionalReports() {
           <div className="mt-8 flex gap-3">
             <button
               onClick={() => setSelectedReport(null)}
-              className="rounded-lg bg-success px-6 py-3 text-body font-medium text-success-foreground hover:bg-success/90"
+              className="rounded-xl bg-success px-6 py-3 text-body font-medium text-success-foreground shadow-soft transition-all duration-200 hover:shadow-card"
             >
               Approve Report
             </button>
             <button
               onClick={() => setSelectedReport(null)}
-              className="rounded-lg bg-destructive px-6 py-3 text-body font-medium text-destructive-foreground hover:bg-destructive/90"
+              className="rounded-xl bg-destructive px-6 py-3 text-body font-medium text-destructive-foreground shadow-soft transition-all duration-200 hover:shadow-card"
             >
               Reject Report
             </button>
@@ -96,11 +96,11 @@ export default function ProfessionalReports() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6 flex gap-1 rounded-lg bg-muted p-1">
+      <div className="mb-6 flex gap-1 rounded-2xl bg-muted/50 p-1.5">
         <button
           onClick={() => setTab("pending")}
-          className={`flex items-center gap-2 rounded-md px-4 py-2.5 text-body font-medium transition-colors ${
-            tab === "pending" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-body font-medium transition-all duration-200 ${
+            tab === "pending" ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <Clock className="h-4 w-4" />
@@ -108,8 +108,8 @@ export default function ProfessionalReports() {
         </button>
         <button
           onClick={() => setTab("reviewed")}
-          className={`flex items-center gap-2 rounded-md px-4 py-2.5 text-body font-medium transition-colors ${
-            tab === "reviewed" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-body font-medium transition-all duration-200 ${
+            tab === "reviewed" ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <CheckCircle className="h-4 w-4" />
@@ -120,10 +120,10 @@ export default function ProfessionalReports() {
       {/* Reports */}
       <div className="space-y-4">
         {reports[tab].map((report, i) => (
-          <div key={i} className="rounded-xl bg-card p-6 shadow-card">
+          <div key={i} className="rounded-2xl bg-card p-6 shadow-card transition-all duration-200 hover:shadow-card-hover">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                   <FileText className="h-5 w-5 text-primary" />
                 </div>
                 <div>
@@ -133,17 +133,17 @@ export default function ProfessionalReports() {
               </div>
               <RiskBadge level={report.risk} />
             </div>
-            <p className="mt-4 text-body text-muted-foreground">{report.summary}</p>
+            <p className="mt-4 text-body text-muted-foreground leading-relaxed">{report.summary}</p>
             <div className="mt-4">
               {tab === "pending" ? (
                 <button
                   onClick={() => setSelectedReport(report)}
-                  className="rounded-lg bg-primary px-4 py-2 text-small font-medium text-primary-foreground hover:bg-primary/90"
+                  className="rounded-xl bg-primary px-4 py-2 text-small font-medium text-primary-foreground shadow-soft transition-all duration-200 hover:shadow-glow"
                 >
                   Review
                 </button>
               ) : (
-                <button className="rounded-lg border border-border px-4 py-2 text-small font-medium text-foreground hover:bg-muted">
+                <button className="rounded-xl border border-border/60 px-4 py-2 text-small font-medium text-foreground transition-all duration-200 hover:bg-muted/60">
                   View Details
                 </button>
               )}

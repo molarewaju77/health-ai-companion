@@ -9,21 +9,21 @@ export default function ProfessionalProfile() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        <div className="rounded-xl bg-card p-6 shadow-card lg:col-span-1">
+        <div className="rounded-2xl bg-card p-6 shadow-card lg:col-span-1">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent text-2xl font-bold text-accent-foreground">
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-2xl font-bold text-accent">
               DR
             </div>
             <h3 className="mt-4 text-foreground">Dr. Rachel Adams</h3>
             <p className="text-body text-muted-foreground">Internal Medicine</p>
-            <span className="mt-2 inline-flex rounded-full bg-success/10 px-3 py-1 text-small font-medium text-success">
+            <span className="mt-2 inline-flex rounded-full border border-success/20 bg-success/8 px-3 py-1 text-small font-medium text-success">
               Verified Professional
             </span>
           </div>
         </div>
 
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-xl bg-card p-6 shadow-card">
+          <div className="rounded-2xl bg-card p-6 shadow-card">
             <h3 className="text-foreground">Personal Information</h3>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {[
@@ -34,7 +34,7 @@ export default function ProfessionalProfile() {
                 { icon: Award, label: "License No.", value: "MD-2024-78901" },
                 { icon: Building, label: "Institution", value: "Bay Area Medical Center" },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-border/60 p-4 transition-all duration-200 hover:bg-muted/30 hover:shadow-soft">
                   <item.icon className="mt-0.5 h-4 w-4 text-muted-foreground" />
                   <div>
                     <p className="text-small text-muted-foreground">{item.label}</p>
@@ -43,7 +43,7 @@ export default function ProfessionalProfile() {
                 </div>
               ))}
             </div>
-            <button className="mt-6 rounded-lg bg-primary px-4 py-2 text-small font-medium text-primary-foreground hover:bg-primary/90">
+            <button className="mt-6 rounded-xl bg-primary px-4 py-2 text-small font-medium text-primary-foreground shadow-soft transition-all duration-200 hover:shadow-glow">
               Edit Profile
             </button>
           </div>

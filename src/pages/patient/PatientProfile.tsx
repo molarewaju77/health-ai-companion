@@ -10,9 +10,9 @@ export default function PatientProfile() {
 
       <div className="grid gap-8 lg:grid-cols-3">
         {/* Profile Card */}
-        <div className="rounded-xl bg-card p-6 shadow-card lg:col-span-1">
+        <div className="rounded-2xl bg-card p-6 shadow-card lg:col-span-1">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/10">
+            <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-primary/10">
               <User className="h-12 w-12 text-primary" />
             </div>
             <h3 className="mt-4 text-foreground">Sarah Johnson</h3>
@@ -36,7 +36,7 @@ export default function PatientProfile() {
 
         {/* Health Info */}
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-xl bg-card p-6 shadow-card">
+          <div className="rounded-2xl bg-card p-6 shadow-card">
             <h3 className="text-foreground">Health Information</h3>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {[
@@ -47,7 +47,7 @@ export default function PatientProfile() {
                 { label: "Allergies", value: "Penicillin, Peanuts" },
                 { label: "Conditions", value: "None reported" },
               ].map((item) => (
-                <div key={item.label} className="rounded-lg border border-border p-4">
+                <div key={item.label} className="rounded-xl border border-border/60 p-4 transition-all duration-200 hover:bg-muted/30 hover:shadow-soft">
                   <p className="text-small text-muted-foreground">{item.label}</p>
                   <p className="mt-1 text-body font-medium text-foreground">{item.value}</p>
                 </div>
@@ -55,25 +55,25 @@ export default function PatientProfile() {
             </div>
           </div>
 
-          <div className="rounded-xl bg-card p-6 shadow-card">
+          <div className="rounded-2xl bg-card p-6 shadow-card">
             <div className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
               <h3 className="text-foreground">Privacy & Security</h3>
             </div>
             <div className="mt-4 space-y-4">
-              <div className="flex items-center justify-between rounded-lg border border-border p-4">
+              <div className="flex items-center justify-between rounded-xl border border-border/60 p-4">
                 <div>
                   <p className="text-body font-medium text-foreground">Two-Factor Authentication</p>
                   <p className="text-small text-muted-foreground">Add extra security to your account</p>
                 </div>
-                <button className="rounded-lg bg-primary px-4 py-2 text-small font-medium text-primary-foreground">Enable</button>
+                <button className="rounded-xl bg-primary px-4 py-2 text-small font-medium text-primary-foreground shadow-soft transition-all duration-200 hover:shadow-glow">Enable</button>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-border p-4">
+              <div className="flex items-center justify-between rounded-xl border border-border/60 p-4">
                 <div>
                   <p className="text-body font-medium text-foreground">Data Sharing</p>
                   <p className="text-small text-muted-foreground">Control who can see your health data</p>
                 </div>
-                <button className="rounded-lg border border-border bg-card px-4 py-2 text-small font-medium text-foreground hover:bg-muted">Manage</button>
+                <button className="rounded-xl border border-border bg-card px-4 py-2 text-small font-medium text-foreground transition-all duration-200 hover:bg-muted/60">Manage</button>
               </div>
             </div>
           </div>

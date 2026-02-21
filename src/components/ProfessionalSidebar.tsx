@@ -1,4 +1,4 @@
-import { BarChart3, Users, FileText, ClipboardList, User, Settings, LogOut } from "lucide-react";
+import { BarChart3, Users, FileText, ClipboardList, User, Settings, LogOut, Stethoscope } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -16,12 +16,12 @@ const bottomLinks = [
 
 export function ProfessionalSidebar() {
   return (
-    <aside className="flex h-screen w-64 flex-col" style={{ backgroundColor: "hsl(220, 26%, 14%)" }}>
-      <div className="flex items-center gap-2 px-6 py-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-          <span className="text-sm font-bold text-primary-foreground">W</span>
+    <aside className="flex h-screen w-64 flex-col" style={{ background: "linear-gradient(180deg, hsl(215, 30%, 18%) 0%, hsl(215, 28%, 15%) 100%)" }}>
+      <div className="flex items-center gap-2.5 px-6 py-5">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/20">
+          <Stethoscope className="h-4.5 w-4.5 text-primary" />
         </div>
-        <span className="text-lg font-bold text-primary-foreground">WellSync Pro</span>
+        <span className="text-lg font-bold text-white/95">WellSync Pro</span>
       </div>
 
       <nav className="flex flex-1 flex-col px-3">
@@ -33,10 +33,10 @@ export function ProfessionalSidebar() {
               end={link.to === "/professional"}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium transition-all duration-200",
                   isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-primary-foreground/70 hover:text-primary-foreground"
+                    ? "bg-primary/20 text-white shadow-glow"
+                    : "text-white/55 hover:bg-white/8 hover:text-white/85"
                 )
               }
             >
@@ -46,17 +46,17 @@ export function ProfessionalSidebar() {
           ))}
         </div>
 
-        <div className="mb-4 space-y-1 border-t border-primary-foreground/10 pt-4">
+        <div className="mb-4 space-y-1 border-t border-white/8 pt-4">
           {bottomLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium transition-colors",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium transition-all duration-200",
                   isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-primary-foreground/70 hover:text-primary-foreground"
+                    ? "bg-primary/20 text-white shadow-glow"
+                    : "text-white/55 hover:bg-white/8 hover:text-white/85"
                 )
               }
             >
@@ -64,7 +64,7 @@ export function ProfessionalSidebar() {
               {link.label}
             </NavLink>
           ))}
-          <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-medium text-primary-foreground/70 transition-colors hover:text-primary-foreground">
+          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium text-white/55 transition-all duration-200 hover:bg-white/8 hover:text-white/85">
             <LogOut className="h-5 w-5" />
             Logout
           </button>
