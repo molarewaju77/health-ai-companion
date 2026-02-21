@@ -25,10 +25,10 @@ export default function PatientDashboard() {
 
       {/* Stats */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Health Score" value="85" icon={Activity} trend="5% from last week" trendUp />
-        <StatCard title="Check-in Streak" value="12 days" icon={ClipboardList} />
-        <StatCard title="Risk Level" value="Low" icon={Shield} trend="Stable" trendUp />
-        <StatCard title="Plan Progress" value="67%" icon={TrendingUp} trend="On track" trendUp />
+        <StatCard title="Health Score" value="85" icon={Activity} trend="5% from last week" trendUp className="shadow-lg hover:shadow-xl transition-shadow" />
+        <StatCard title="Check-in Streak" value="12 days" icon={ClipboardList} className="shadow-lg hover:shadow-xl transition-shadow" />
+        <StatCard title="Risk Level" value="Low" icon={Shield} trend="Stable" trendUp className="shadow-lg hover:shadow-xl transition-shadow" />
+        <StatCard title="Plan Progress" value="67%" icon={TrendingUp} trend="On track" trendUp className="shadow-lg hover:shadow-xl transition-shadow" />
       </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
