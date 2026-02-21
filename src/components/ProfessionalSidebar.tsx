@@ -1,4 +1,4 @@
-import { BarChart3, Users, FileText, MessageSquare, AlertTriangle, ClipboardList, User, Settings, LogOut } from "lucide-react";
+import { BarChart3, Users, FileText, ClipboardList, User, Settings, LogOut } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -6,8 +6,6 @@ const mainLinks = [
   { icon: BarChart3, label: "Dashboard", to: "/professional" },
   { icon: Users, label: "Patients", to: "/professional/patients" },
   { icon: FileText, label: "Reports", to: "/professional/reports" },
-  { icon: MessageSquare, label: "Consultations", to: "/professional/consultations" },
-  { icon: AlertTriangle, label: "Alerts", to: "/professional/alerts" },
   { icon: ClipboardList, label: "Plan Templates", to: "/professional/templates" },
 ];
 
@@ -41,7 +39,6 @@ export function ProfessionalSidebar() {
                     : "text-primary-foreground/70 hover:text-primary-foreground"
                 )
               }
-              style={({ isActive }) => isActive ? {} : { }}
             >
               <link.icon className="h-5 w-5" />
               {link.label}

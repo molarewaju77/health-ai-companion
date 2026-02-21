@@ -1,17 +1,15 @@
-import { Home, ClipboardList, BarChart3, FileText, User, HelpCircle, Settings, LogOut } from "lucide-react";
+import { Home, ClipboardList, FileText, User, Settings, LogOut } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const mainLinks = [
   { icon: Home, label: "Home", to: "/patient" },
   { icon: ClipboardList, label: "Daily Check-in", to: "/patient/checkin" },
-  { icon: BarChart3, label: "History", to: "/patient/history" },
   { icon: FileText, label: "My Plan", to: "/patient/plan" },
-  { icon: User, label: "Profile", to: "/patient/profile" },
 ];
 
 const bottomLinks = [
-  { icon: HelpCircle, label: "Help & Support", to: "/patient/help" },
+  { icon: User, label: "Profile", to: "/patient/profile" },
   { icon: Settings, label: "Settings", to: "/patient/settings" },
 ];
 
