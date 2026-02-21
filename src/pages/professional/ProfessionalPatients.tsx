@@ -1,6 +1,7 @@
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, MessageSquare } from "lucide-react";
 import { RiskBadge } from "@/components/RiskBadge";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const patients = [
   { name: "Sarah Johnson", email: "sarah.j@email.com", age: 36, risk: "low" as const, lastCheckin: "Today", plan: "Active", adherence: "92%" },
@@ -16,6 +17,7 @@ const patients = [
 type RiskFilter = "all" | "low" | "moderate" | "high";
 
 export default function ProfessionalPatients() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [riskFilter, setRiskFilter] = useState<RiskFilter>("all");
 
@@ -89,10 +91,14 @@ export default function ProfessionalPatients() {
                   <td className="px-6 py-4 text-body text-muted-foreground">{patient.plan}</td>
                   <td className="px-6 py-4 text-body font-medium text-foreground">{patient.adherence}</td>
                   <td className="px-6 py-4">
-                    <button className="rounded-lg bg-primary px-3 py-1.5 text-small font-medium text-primary-foreground hover:bg-primary/90">
-                      View
-                    </button>
-                  </td>
+                     <button
+                       onClick={() => navigate(`/professional/chat/${patient.name.toLowerCase().replace(/\s+/g, "-")}`)}
+                       className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-small font-medium text-primary-foreground hover:bg-primary/90"
+                     >
+                       <MessageSquare className="h-3.5 w-3.5" />
+                       Chat
+                     </button>
+                   </td>
                 </tr>
               ))}
             </tbody>

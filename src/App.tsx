@@ -13,6 +13,7 @@ import PatientSettings from "./pages/patient/PatientSettings";
 import ProfessionalLayout from "./pages/professional/ProfessionalLayout";
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 import ProfessionalPatients from "./pages/professional/ProfessionalPatients";
+import ProfessionalChat from "./pages/professional/ProfessionalChat";
 import ProfessionalReports from "./pages/professional/ProfessionalReports";
 import ProfessionalTemplates from "./pages/professional/ProfessionalTemplates";
 import ProfessionalProfile from "./pages/professional/ProfessionalProfile";
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/professional" element={<ProfessionalLayout />}>
             <Route index element={<ProfessionalDashboard />} />
             <Route path="patients" element={<ProfessionalPatients />} />
+            <Route path="chat/:patientId" element={<ProfessionalChat />} />
             <Route path="reports" element={<ProfessionalReports />} />
             <Route path="templates" element={<ProfessionalTemplates />} />
             <Route path="profile" element={<ProfessionalProfile />} />
